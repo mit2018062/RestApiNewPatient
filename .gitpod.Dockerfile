@@ -1,4 +1,4 @@
-FROM gitpod/workspace-full
+FROM gitpod/workspace-mysql
 
 # Install mongodb
 RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4
@@ -10,9 +10,4 @@ RUN sudo apt-get update \
 RUN sudo mkdir -p /data/db \
  && sudo chown gitpod:gitpod -R /data/db
 
-#Install mysql
-RUN sudo apt update \
-&& wget -c https://repo.mysql.com//mysql-apt-config_0.8.13-1_all.deb \
-&& sudo dpkg -i mysql-apt-config_0.8.13-1_all.deb \
-&& sudo apt-get install -y mysql-server
-RUN sudo service mysql start
+
