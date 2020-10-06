@@ -18,9 +18,15 @@ public class KafKaProducerService
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
  
-    public void sendMessage(String message) 
+    public void newPatientMessage(String message) 
     {
         logger.info(String.format("Patient id is -> %s", message));
+        this.kafkaTemplate.send(AppConstants.TOPIC_NAME, message);
+    }
+
+    public void deleteMessage(String message) 
+    {
+        logger.info(String.format("Deleted Patient id is -> %s", message));
         this.kafkaTemplate.send(AppConstants.TOPIC_NAME, message);
     }
 }

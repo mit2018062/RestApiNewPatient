@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -75,7 +76,7 @@ public class MyController {
                 if (patient.getFirstname().matches(pattern) && patient.getLastname().matches(pattern) && patient.getDob().isBefore(LocalDate.now()) ) {
                     //System.out.println("valid");
                      Patient p = myService.saveOrUpdate(patient);
-                     this.producerService.sendMessage(p.getPid());
+                     //this.producerService.sendMessage(p.getPid());
                      ////return new ResponseEntity<>(p, HttpStatus.CREATED);...........(working)
                      //return new ResponseEntity<>(msg, HttpStatus.CREATED);
                     //return ResponseEntity<patient>(msg, header, Status, HttpStatus.CREATED);
@@ -90,6 +91,13 @@ public class MyController {
                    return new ResponseEntity<Object>("Input format should be [A-Za-z0-9]", HttpStatus.INTERNAL_SERVER_ERROR.valueOf(400));
                 }
     }
+
+     @GetMapping("/patient/delete/{pid}")
+    public String delete(@PathVariable String pid){
+        myService.delete(pid);
+        return "Patient id is Deleted"+pid;
+    }
+
 /*
    @GetMapping(value = "/publish")
     public void getMessageToKafkaTopic(String message) 

@@ -10,6 +10,7 @@ public interface MyService {
    // List<Patient> listAll();
     //List<Patient> getByFnameAndLname(String name);
     Patient saveOrUpdate(Patient patient);
+    void delete(String pid);
     //Optional<Patient> getByPid(String pid);
-
+    
 }
