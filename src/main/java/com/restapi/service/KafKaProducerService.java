@@ -21,12 +21,12 @@ public class KafKaProducerService
     public void newPatientMessage(String message) 
     {
         logger.info(String.format("Patient id is -> %s", message));
-        this.kafkaTemplate.send(AppConstants.TOPIC_NAME, message);
+        this.kafkaTemplate.send(AppConstants.TOPIC_NAME, message);//sending the message(Pid) to kafka server
     }
 
     public void deleteMessage(String message) 
     {
         logger.info(String.format("Deleted Patient id is -> %s", message));
-        this.kafkaTemplate.send(AppConstants.TOPIC_NAME, message);
+        this.kafkaTemplate.send(AppConstants.TOPIC_NAME1, message);
     }
 }
